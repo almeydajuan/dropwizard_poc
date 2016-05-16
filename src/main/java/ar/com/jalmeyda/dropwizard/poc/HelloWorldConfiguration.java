@@ -1,3 +1,5 @@
+package ar.com.jalmeyda.dropwizard.poc;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Configuration;
 import org.hibernate.validator.constraints.NotEmpty;

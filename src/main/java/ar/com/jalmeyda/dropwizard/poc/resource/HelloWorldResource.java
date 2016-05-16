@@ -1,3 +1,6 @@
+package ar.com.jalmeyda.dropwizard.poc.resource;
+
+import ar.com.jalmeyda.dropwizard.poc.api.Saying;
 import com.codahale.metrics.annotation.Timed;
 import com.google.common.base.Optional;
 
@@ -9,12 +12,11 @@ import javax.ws.rs.core.MediaType;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * Created by Juan Almeyda on 5/13/2016.
+ * Created by Juan Almeyda on 5/16/2016.
  */
 @Path("/hello-world")
 @Produces(MediaType.APPLICATION_JSON)
 public class HelloWorldResource {
-
     private final String template;
     private final String defaultName;
     private final AtomicLong counter;

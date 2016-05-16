@@ -1,3 +1,5 @@
+package ar.com.jalmeyda.dropwizard.poc.api;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
 
