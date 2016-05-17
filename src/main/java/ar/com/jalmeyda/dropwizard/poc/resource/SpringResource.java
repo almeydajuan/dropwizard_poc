@@ -19,14 +19,16 @@ import javax.ws.rs.core.MediaType;
 public class SpringResource {
 
     private SpringService springService;
+    private String defaultName;
 
-    public SpringResource(SpringService springService) {
+    public SpringResource(SpringService springService, String defaultName) {
         this.springService = springService;
+        this.defaultName = defaultName;
     }
 
     @GET
     @Timed
     public Saying helloSpring(@QueryParam("name") Optional<String> name) {
-        return springService.sayingSomething(name);
+        return springService.sayingSomething(name.or(defaultName));
     }
 }

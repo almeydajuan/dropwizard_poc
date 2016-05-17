@@ -17,6 +17,7 @@ import java.util.concurrent.atomic.AtomicLong;
 @Path("/hello-world")
 @Produces(MediaType.APPLICATION_JSON)
 public class HelloWorldResource {
+
     private final String template;
     private final String defaultName;
     private final AtomicLong counter;

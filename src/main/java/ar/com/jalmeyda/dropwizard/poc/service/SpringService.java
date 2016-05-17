@@ -1,7 +1,6 @@
 package ar.com.jalmeyda.dropwizard.poc.service;
 
 import ar.com.jalmeyda.dropwizard.poc.api.Saying;
-import com.google.common.base.Optional;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -11,16 +10,14 @@ import java.util.concurrent.atomic.AtomicLong;
 public class SpringService {
 
     private String template;
-    private String defaultName;
     private final AtomicLong counter = new AtomicLong();
 
-    public SpringService(String template, String defaultName) {
+    public SpringService(String template) {
         this.template = template;
-        this.defaultName = defaultName;
     }
 
-    public Saying sayingSomething(Optional<String> name) {
-        final String value = String.format(template, name.or(defaultName));
+    public Saying sayingSomething(String name) {
+        final String value = String.format(template, name);
         return new Saying(counter.incrementAndGet(), value);
     }
 }
