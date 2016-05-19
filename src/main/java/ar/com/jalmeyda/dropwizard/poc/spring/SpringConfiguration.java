@@ -19,19 +19,29 @@ public class SpringConfiguration {
     @Autowired
     private HelloWorldConfiguration _configuration;
 
+    @Bean(name = "defaultName")
+    public String defaultName() {
+        return _configuration.getDefaultName();
+    }
+
+    @Bean(name = "template")
+    public String template() {
+        return _configuration.getTemplate();
+    }
+
     @Bean
     public SpringService springService() {
-        return new SpringService(_configuration.getTemplate());
+        return new SpringService();
     }
 
     @Bean
     public SpringResource springResource() {
-        return new SpringResource(springService(), _configuration.getDefaultName());
+        return new SpringResource();
     }
 
     @Bean
     public SayingJob sayingJob() {
-        return new SayingJob(springService());
+        return new SayingJob();
     }
 
 }

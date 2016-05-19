@@ -2,6 +2,7 @@ package ar.com.jalmeyda.dropwizard.poc.service;
 
 import ar.com.jalmeyda.dropwizard.poc.api.Saying;
 
+import javax.annotation.Resource;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -9,12 +10,10 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public class SpringService {
 
+    @Resource(name = "template")
     private String template;
+    
     private final AtomicLong counter = new AtomicLong();
-
-    public SpringService(String template) {
-        this.template = template;
-    }
 
     public Saying sayingSomething(String name) {
         final String value = String.format(template, name);

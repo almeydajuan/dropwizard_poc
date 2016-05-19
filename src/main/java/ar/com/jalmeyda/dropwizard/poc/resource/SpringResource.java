@@ -5,6 +5,7 @@ import ar.com.jalmeyda.dropwizard.poc.service.SpringService;
 import com.codahale.metrics.annotation.Timed;
 import com.google.common.base.Optional;
 
+import javax.annotation.Resource;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -18,13 +19,11 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class SpringResource {
 
+    @Resource
     private SpringService springService;
-    private String defaultName;
 
-    public SpringResource(SpringService springService, String defaultName) {
-        this.springService = springService;
-        this.defaultName = defaultName;
-    }
+    @Resource(name = "defaultName")
+    private String defaultName;
 
     @GET
     @Timed

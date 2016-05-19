@@ -1,2 +1,8 @@
 template: Hello, %s!
 defaultName: Stranger
+
+# Extending from the default server configuration
+server:
+  applicationConnectors:
+    - type: http
+      port: 8080
