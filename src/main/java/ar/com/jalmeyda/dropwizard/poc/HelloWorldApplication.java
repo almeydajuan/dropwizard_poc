@@ -1,6 +1,6 @@
 package ar.com.jalmeyda.dropwizard.poc;
 
-import ar.com.jalmeyda.dropwizard.poc.health.TemplateHealthCheck;
+import ar.com.jalmeyda.dropwizard.poc.health.PingHealthCheck;
 import ar.com.jalmeyda.dropwizard.poc.resource.HelloWorldResource;
 import ar.com.jalmeyda.dropwizard.poc.resource.SpringResource;
 import ar.com.jalmeyda.dropwizard.poc.spring.SpringConfiguration;
@@ -37,15 +37,14 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
     }
 
     @Override
-    public void run(HelloWorldConfiguration configuration,
-                    Environment environment) {
+    public void run(HelloWorldConfiguration configuration, Environment environment) {
+        final PingHealthCheck healthCheck = new PingHealthCheck();
+        environment.healthChecks().register("ping", healthCheck);
+
         final HelloWorldResource resource = new HelloWorldResource(
                 configuration.getTemplate(),
                 configuration.getDefaultName()
         );
-        final TemplateHealthCheck healthCheck =
-                new TemplateHealthCheck(configuration.getTemplate());
-        environment.healthChecks().register("template", healthCheck);
         environment.jersey().register(resource);
 
         // Spring context
