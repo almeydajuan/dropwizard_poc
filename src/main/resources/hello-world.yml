@@ -6,3 +6,6 @@ server:
   applicationConnectors:
     - type: http
       port: 8080
+
+swagger:
+  resourcePackage: ar.com.jalmeyda.dropwizard.poc.resource

@@ -3,6 +3,8 @@ package ar.com.jalmeyda.dropwizard.poc.resource;
 import ar.com.jalmeyda.dropwizard.poc.api.Saying;
 import com.codahale.metrics.annotation.Timed;
 import com.google.common.base.Optional;
+import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -14,6 +16,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * Created by Juan Almeyda on 5/16/2016.
  */
+@Api("/hello-world")
 @Path("/hello-world")
 @Produces(MediaType.APPLICATION_JSON)
 public class HelloWorldResource {
@@ -30,8 +33,9 @@ public class HelloWorldResource {
 
     @GET
     @Timed
-    public Saying sayHello(@QueryParam("name") Optional<String> name) {
-        final String value = String.format(template, name.or(defaultName));
+    @ApiOperation(value = "Get greeted", response = Saying.class)
+    public Saying sayHello(@QueryParam("name") String name) {
+        final String value = String.format(template, name == null ? defaultName : name);
         return new Saying(counter.incrementAndGet(), value);
     }
 }
