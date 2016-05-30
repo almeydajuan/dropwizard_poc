@@ -50,6 +50,7 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
         // Spring context
         ApplicationContext context = new SpringContextBuilder()
                 .addParentContextBean("configuration", configuration)
+                .addParentContextBean("dropwizardEnvironment", environment)
                 .addAnnotationConfiguration(SpringConfiguration.class)
                 .build();
         SpringResource springResource = context.getBean(SpringResource.class);
